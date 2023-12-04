@@ -15,7 +15,6 @@ public class Task4_2
     }
 
     static Dictionary<int, int> wins = new Dictionary<int, int>();
-    static Dictionary<int, int> results = new Dictionary<int, int>();
 
     public static int ProcessLines(string[] lines)
     {
@@ -59,7 +58,6 @@ public class Task4_2
     {
         if (wins[i] > 0)
         {
-            //results[i]++; 
             result += wins[i];
             for (int j = i + 1; j <= Math.Min(i + wins[i], wins.Count - 1); j++)
             {
