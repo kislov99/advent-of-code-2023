@@ -33,6 +33,11 @@ public class Task7_2
             var dict = new Dictionary<char, Card>();
             var hand = line.Split(' ')[0];
             var bid = line.Split(' ')[1];
+            if (hand == "JJJJJ")
+            {
+                hand = "11111";
+            }
+
             foreach (var c in hand)
             {
                 if (dict.ContainsKey(c))
@@ -54,6 +59,11 @@ public class Task7_2
             var list = dict.ToList();
             list.Sort(delegate (KeyValuePair<char, Card> pair1, KeyValuePair<char, Card> pair2)
             {
+                if (pair1.Key == 'J')
+                    return 1;
+                if (pair2.Key == 'J')
+                    return -1;
+
                 if (pair1.Value.Number > pair2.Value.Number)
                 {
                     return -1;
@@ -83,6 +93,7 @@ public class Task7_2
             if (list.Any(x => x.Key == 'J'))
             {
                 list[0].Value.Number += list.Single(x => x.Key == 'J').Value.Number;
+                list.Single(x => x.Key == 'J').Value.Number = 0;
             }
 
             resultList.Add(list);
