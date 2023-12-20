@@ -35,7 +35,7 @@ public class Task17
         public bool Visited;
     }
     
-    struct Node {
+    record struct Node {
         public int Y; 
         public int X;
         public Direction Direction; 
