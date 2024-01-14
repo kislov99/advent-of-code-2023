@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode;
 
-public struct Coord
+public record struct Coord
 {
     public int X;
     public int Y;

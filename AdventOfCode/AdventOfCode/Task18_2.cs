@@ -53,8 +53,8 @@ public class Task18_2
         var split = lines[0].Split(' ');
         var current = new Command()
         {
-            Direction = NumberToDirectionMap[int.Parse(split[2][7..^1])],
-            Steps = int.Parse(split[2][2..^2], System.Globalization.NumberStyles.HexNumber),
+            Direction = split[0][0],
+            Steps = int.Parse(split[1]),
             Prev = null,
         };
 
@@ -65,29 +65,29 @@ public class Task18_2
             split = lines[i].Split(' ');
             var newCommand = new Command
             {
-                Direction = NumberToDirectionMap[int.Parse(split[2][7..^1])],
-                Steps = int.Parse(split[2][2..^2], System.Globalization.NumberStyles.HexNumber),
+                Direction = split[0][0],
+                Steps = int.Parse(split[1]),
                 Prev = current,
             };
 
             current.Next = newCommand;
             current = newCommand;
-            //if (i == 100) break;
+            if (i == 100) break;
         }
 
-        //current.Next = new Command { Direction = 'U', Steps = 20 };
-        //current.Next.Prev = current; current = current.Next;
-        //current.Next = new Command { Direction = 'R', Steps = 31 };
-        //current.Next.Prev = current; current = current.Next;
-        //current.Next = new Command { Direction = 'D', Steps = 157 };
-        //current.Next.Prev = current; current = current.Next;
-        //current.Next = new Command { Direction = 'L', Steps = 7 };
-        //current.Next.Prev = current; current = current.Next;
+        current.Next = new Command { Direction = 'U', Steps = 20 };
+        current.Next.Prev = current; current = current.Next;
+        current.Next = new Command { Direction = 'R', Steps = 31 };
+        current.Next.Prev = current; current = current.Next;
+        current.Next = new Command { Direction = 'D', Steps = 157 };
+        current.Next.Prev = current; current = current.Next;
+        current.Next = new Command { Direction = 'L', Steps = 7 };
+        current.Next.Prev = current; current = current.Next;
+        Total = 104;
+        Commands = Commands.Next.Next;
 
-        Total = lines.Length;
-        //Total = 104;
-        Commands = Commands.Next;
-        //Commands = Commands.Next.Next;
+        //Total = lines.Length;
+        //Commands = Commands.Next;
         current.Next = Commands;
         Commands.Prev = current;
 
@@ -245,7 +245,7 @@ public class Task18_2
                 }
                 current = current.Prev;
             }
-            //PrintMatrix("matrix.txt", current);
+            PrintMatrix("matrix.txt", current);
         }
 
         return current;
